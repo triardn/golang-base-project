@@ -16,4 +16,5 @@ type Option struct {
 // Services all service object injected here
 type Services struct {
 	HealthCheck IHealthCheckService
+	Hello       IHelloService
 }

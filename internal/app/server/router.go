@@ -21,14 +21,15 @@ func Router(opt handler.HandlerOption) *chi.Mux {
 	})
 
 	healthCheckHandler := handler.NewHealtCheckHandler(opt)
+	helloHandler := handler.NewHelloHandler(opt)
 
 	r := chi.NewRouter()
 	r.Use(corsOpt.Handler)
-	// r.Use(middleware.CommonHeaderMiddleware)
 
 	// Setup your routing here
 	r.Method(http.MethodGet, "/health/check", handler.HttpHandler{healthCheckHandler.Check})
 	r.Method(http.MethodGet, "/health/readiness", handler.HttpHandler{healthCheckHandler.Readiness})
+	r.Method(http.MethodGet, "/greet", handler.HttpHandler{helloHandler.Greet})
 
 	return r
 }
